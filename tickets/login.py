@@ -2,18 +2,21 @@
 
 import ngRequest
 from io import BytesIO
-import cv2
 import numpy as np
+import cv2
 
+
+
+#https://prateekvjoshi.com/2016/03/01/how-to-read-an-image-from-a-url-in-opencv-python/
 def getCaptchaImge():
     urlStr = 'https://kyfw.12306.cn/passport/captcha/captcha-image?login_site=E&module=login&rand=sjrand&0.2347062926750'
     # response = session.get(urlStr, headers=headers)
     response = ngRequest.getRequest(urlStr)
-    img = cv2.imread('/Users/liaonaigang/Downloads/AC28B28341202384728EF8DB964C13F7.png')
-    cv2.show(img)
-    # file = BytesIO(response.content)
-    # cv2.im
-    # img.show()
+    arr = np.asarray(bytearray(response.content), dtype=np.uint8)
+    img = cv2.imdecode(arr, cv2.IMREAD_COLOR)  # 'load it as it is'
+    cv2.imshow('captchImge', img)
+    cv2.waitKey()
+
 
 
 def captchaCheck():

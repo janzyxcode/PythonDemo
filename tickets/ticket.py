@@ -23,8 +23,8 @@ import ngRequest
 
 
 def getTrainRquestList():
-    startCityCode = cons.getCityCodeWithName('广州')
-    endCityCode = cons.getCityCodeWithName('长沙')
+    startCityCode = cons.getCityCodeWithName('广州南')
+    endCityCode = cons.getCityCodeWithName('宾阳')
     trainDate = '2018-01-09'
     urlStr = 'https://kyfw.12306.cn/otn/leftTicket/queryZ?leftTicketDTO.train_date=' + trainDate + '&leftTicketDTO.from_station=' + startCityCode + '&leftTicketDTO.to_station=' + endCityCode + '&purpose_codes=ADULT'
     response = ngRequest.getRequest(urlStr)
@@ -87,11 +87,11 @@ def decoTrainResponse(result):
 
 
 
-# cons.getStationName()
-login.getCaptchaImge()
+cons.getStationName()
+# login.getCaptchaImge()
 # login.captchaCheck()
 
-# trainList = getTrainRquestList()
-# for item in trainList:
-#     print(item)
+trainList = getTrainRquestList()
+for item in trainList:
+    print(item)
 
