@@ -13,6 +13,7 @@ disable_warnings(InsecureRequestWarning)
 
 
 __session = requests.session()
+# 设置不验证SSL，你应该看到了HTTPS
 __session.verify = False
 
 __ua = UserAgent(verify_ssl=False)

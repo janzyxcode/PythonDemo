@@ -15,7 +15,8 @@ def getCaptchaImge():
     arr = np.asarray(bytearray(response.content), dtype=np.uint8)
     img = cv2.imdecode(arr, cv2.IMREAD_COLOR)  # 'load it as it is'
     cv2.imshow('captchImge', img)
-    cv2.waitKey()
+    cv2.waitKey(10)
+    positions = input("input verify code:")
 
 
 
