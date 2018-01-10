@@ -86,19 +86,20 @@ def decoTrainResponse(result):
         # for n in ti:
         #     print('[%s] %s' %(c,n))
         #     c += 1
+    fileName = '/Users/user/Desktop/PythonDemo/Ticket/tickets/ticketLeft.json'
+    with open(fileName, 'w', encoding='utf-8') as file_obj:
+        json.dump(trainDictList, file_obj)
     return trainDictList
 
 
 
 cons.getStationName()
-# login.getCaptchaImge()
+login.getCaptchaImge()
 # login.captchaCheck()
 
 trainList = getTrainRquestList()
-fileName = '/Users/liaonaigang/Desktop/PythonDemo/tickets/ticketLeft/ticketLeft.txt'
-f = open(fileName, 'w+')
-f.write(str(trainList))
-f.close()
-for item in trainList:
-    print(item)
+
+
+# for item in trainList:
+#     print(item)
 
