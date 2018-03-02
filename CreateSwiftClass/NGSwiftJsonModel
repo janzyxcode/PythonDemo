@@ -1,0 +1,105 @@
+
+Model：
+    var amount:String?
+    var amountMax:CGFloat = 0
+    var amountMin:CGFloat = 0
+    var duration = 0
+    var durationType = 0
+    var inputTime = 0
+    var interestRate:CGFloat = 0
+    var lendWay = 0
+    var lendWayStr:String?
+    var loanConfigId = 0
+    var managementRate:CGFloat = 0
+    var monthFeeRateStr:String?
+    var monthInterestRateStr:String?
+    var monthManagementRateStr:String?
+    var monthServiceRateStr:String?
+    var overdueFineStr:String?
+    var overdueRate:CGFloat = 0
+    var poundageRate:CGFloat = 0
+    var productId = 0
+    var serviceRate:CGFloat = 0
+    var term:String?
+    var termMax = 0
+    var termMin = 0
+    var valid = 0
+
+    required init(from decoder: Decoder) throws{
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let value = try container.decodeIfPresent(String.self, forKey: .amount){
+            amount = value
+            }
+        if let value = try container.decodeIfPresent(CGFloat.self, forKey: .amountMax){
+            amountMax = value
+            }
+        if let value = try container.decodeIfPresent(CGFloat.self, forKey: .amountMin){
+            amountMin = value
+            }
+        if let value = try container.decodeIfPresent(Int.self, forKey: .duration){
+            duration = value
+            }
+        if let value = try container.decodeIfPresent(Int.self, forKey: .durationType){
+            durationType = value
+            }
+        if let value = try container.decodeIfPresent(Int.self, forKey: .inputTime){
+            inputTime = value
+            }
+        if let value = try container.decodeIfPresent(CGFloat.self, forKey: .interestRate){
+            interestRate = value
+            }
+        if let value = try container.decodeIfPresent(Int.self, forKey: .lendWay){
+            lendWay = value
+            }
+        if let value = try container.decodeIfPresent(String.self, forKey: .lendWayStr){
+            lendWayStr = value
+            }
+        if let value = try container.decodeIfPresent(Int.self, forKey: .loanConfigId){
+            loanConfigId = value
+            }
+        if let value = try container.decodeIfPresent(CGFloat.self, forKey: .managementRate){
+            managementRate = value
+            }
+        if let value = try container.decodeIfPresent(String.self, forKey: .monthFeeRateStr){
+            monthFeeRateStr = value
+            }
+        if let value = try container.decodeIfPresent(String.self, forKey: .monthInterestRateStr){
+            monthInterestRateStr = value
+            }
+        if let value = try container.decodeIfPresent(String.self, forKey: .monthManagementRateStr){
+            monthManagementRateStr = value
+            }
+        if let value = try container.decodeIfPresent(String.self, forKey: .monthServiceRateStr){
+            monthServiceRateStr = value
+            }
+        if let value = try container.decodeIfPresent(String.self, forKey: .overdueFineStr){
+            overdueFineStr = value
+            }
+        if let value = try container.decodeIfPresent(CGFloat.self, forKey: .overdueRate){
+            overdueRate = value
+            }
+        if let value = try container.decodeIfPresent(CGFloat.self, forKey: .poundageRate){
+            poundageRate = value
+            }
+        if let value = try container.decodeIfPresent(Int.self, forKey: .productId){
+            productId = value
+            }
+        if let value = try container.decodeIfPresent(CGFloat.self, forKey: .serviceRate){
+            serviceRate = value
+            }
+        if let value = try container.decodeIfPresent(String.self, forKey: .term){
+            term = value
+            }
+        if let value = try container.decodeIfPresent(Int.self, forKey: .termMax){
+            termMax = value
+            }
+        if let value = try container.decodeIfPresent(Int.self, forKey: .termMin){
+            termMin = value
+            }
+        if let value = try container.decodeIfPresent(Int.self, forKey: .valid){
+            valid = value
+            }
+    }
+
+
+
