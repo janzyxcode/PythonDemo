@@ -1,35 +1,33 @@
 
 Model：
-    var amount:String?
-    var amountMax:CGFloat = 0
-    var amountMin:CGFloat = 0
+    var amount: String?
+    var amountMax: CGFloat = 0
+    var amountMin: CGFloat = 0
     var duration = 0
     var durationType = 0
     var inputTime = 0
-    var interestRate:CGFloat = 0
+    var interestRate: CGFloat = 0
     var lendWay = 0
-    var lendWayStr:String?
+    var lendWayStr: String?
     var loanConfigId = 0
-    var managementRate:CGFloat = 0
-    var monthFeeRateStr:String?
-    var monthInterestRateStr:String?
-    var monthManagementRateStr:String?
-    var monthServiceRateStr:String?
-    var overdueFineStr:String?
-    var overdueRate:CGFloat = 0
-    var poundageRate:CGFloat = 0
+    var managementRate: CGFloat = 0
+    var monthFeeRateStr: String?
+    var monthInterestRateStr: String?
+    var monthManagementRateStr: String?
+    var monthServiceRateStr: String?
+    var overdueFineStr: String?
+    var overdueRate: CGFloat = 0
+    var poundageRate: CGFloat = 0
     var productId = 0
-    var serviceRate:CGFloat = 0
-    var term:String?
+    var serviceRate: CGFloat = 0
+    var term: String?
     var termMax = 0
     var termMin = 0
     var valid = 0
 
     required init(from decoder: Decoder) throws{
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        if let value = try container.decodeIfPresent(String.self, forKey: .amount){
-            amount = value
-            }
+        amount = try container.decodeIfPresent(String.self, forKey: .amount)
         if let value = try container.decodeIfPresent(CGFloat.self, forKey: .amountMax){
             amountMax = value
             }
@@ -51,30 +49,18 @@ Model：
         if let value = try container.decodeIfPresent(Int.self, forKey: .lendWay){
             lendWay = value
             }
-        if let value = try container.decodeIfPresent(String.self, forKey: .lendWayStr){
-            lendWayStr = value
-            }
+        lendWayStr = try container.decodeIfPresent(String.self, forKey: .lendWayStr)
         if let value = try container.decodeIfPresent(Int.self, forKey: .loanConfigId){
             loanConfigId = value
             }
         if let value = try container.decodeIfPresent(CGFloat.self, forKey: .managementRate){
             managementRate = value
             }
-        if let value = try container.decodeIfPresent(String.self, forKey: .monthFeeRateStr){
-            monthFeeRateStr = value
-            }
-        if let value = try container.decodeIfPresent(String.self, forKey: .monthInterestRateStr){
-            monthInterestRateStr = value
-            }
-        if let value = try container.decodeIfPresent(String.self, forKey: .monthManagementRateStr){
-            monthManagementRateStr = value
-            }
-        if let value = try container.decodeIfPresent(String.self, forKey: .monthServiceRateStr){
-            monthServiceRateStr = value
-            }
-        if let value = try container.decodeIfPresent(String.self, forKey: .overdueFineStr){
-            overdueFineStr = value
-            }
+        monthFeeRateStr = try container.decodeIfPresent(String.self, forKey: .monthFeeRateStr)
+        monthInterestRateStr = try container.decodeIfPresent(String.self, forKey: .monthInterestRateStr)
+        monthManagementRateStr = try container.decodeIfPresent(String.self, forKey: .monthManagementRateStr)
+        monthServiceRateStr = try container.decodeIfPresent(String.self, forKey: .monthServiceRateStr)
+        overdueFineStr = try container.decodeIfPresent(String.self, forKey: .overdueFineStr)
         if let value = try container.decodeIfPresent(CGFloat.self, forKey: .overdueRate){
             overdueRate = value
             }
@@ -87,9 +73,7 @@ Model：
         if let value = try container.decodeIfPresent(CGFloat.self, forKey: .serviceRate){
             serviceRate = value
             }
-        if let value = try container.decodeIfPresent(String.self, forKey: .term){
-            term = value
-            }
+        term = try container.decodeIfPresent(String.self, forKey: .term)
         if let value = try container.decodeIfPresent(Int.self, forKey: .termMax){
             termMax = value
             }
@@ -100,6 +84,3 @@ Model：
             valid = value
             }
     }
-
-
-

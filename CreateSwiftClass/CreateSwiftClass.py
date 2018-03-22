@@ -9,10 +9,9 @@ requiredLok = True
 modelStr = ''
 
 def startWord():
-    with open('/Users/user/Desktop/Python Tool/NGSwiftJson','r',encoding='utf-8') as file_obj:
+    with open('/Users/user/Desktop/PythonDemo/CreateSwiftClass/NGSwiftJson','r',encoding='utf-8') as file_obj:
         data = json.load(file_obj)
         # print(json.dumps(data,indent=4,ensure_ascii=False))
-        print('\n-----Encoding....')
         encodeJson(data,'')
 
 def encodeJson(data,dicKey):
@@ -26,33 +25,40 @@ def encodeJson(data,dicKey):
 
 def encodeDict(dic,dicKey):
     print('---- ' + str(dicKey) + ' ----')
-    global  modelStr
+    global modelStr
     modelStr += '\n' + str(dicKey) + 'Model：\n'
     keyTypes = []
+    keyIfIndexDic = {}
+
     for key in dic.keys():
         value = dic[key]
-        # print('key: ' + str(key) + '：' + str(type(value)) + '   ' + str(value))
+        strKey = str(key)
+        # print('key: ' + strKey + '：' + str(type(value)) + '   ' + str(value))
         if isinstance(value,list):
-            encodeJson(value,str(key))
+            encodeJson(value,strKey)
             modelStr += '    var : [<#Type#>]?\n'
         elif isinstance(value,dict):
             encodeDict(value,key)
             modelStr += '    var : <#Type#>?\n'
         elif isinstance(value, int):
-            modelStr += '    var ' + str(key) + ' = 0\n'
-            keyTypes.append({str(key): 'Int'})
+            modelStr += '    var ' + strKey + ' = 0\n'
+            keyTypes.append({strKey: 'Int'})
+            keyIfIndexDic[strKey] = '0'
         elif isinstance(value, bool):
-            modelStr += '    var ' + str(key) + ' = false\n'
-            keyTypes.append({str(key): 'Bool'})
+            modelStr += '    var ' + strKey + ' = false\n'
+            keyTypes.append({strKey: 'Bool'})
+            keyIfIndexDic[strKey] = '0'
         elif isinstance(value, float):
-            modelStr += '    var ' + str(key) + ': CGFloat = 0\n'
-            keyTypes.append({str(key): ' CGFloat'})
+            modelStr += '    var ' + strKey + ': CGFloat = 0\n'
+            keyTypes.append({strKey: 'CGFloat'})
+            keyIfIndexDic[strKey] = '0'
         elif isinstance(value, str):
-            modelStr += '    var ' + str(key) + ': String?\n'
-            keyTypes.append({str(key): 'String'})
+            modelStr += '    var ' + strKey + ': String?\n'
+            keyTypes.append({strKey: 'String'})
+            keyIfIndexDic[strKey] = '1'
         else:
-            modelStr += '    var ' + str(key) + ': <#Type#>\n'
-            keyTypes.append({str(key): '<#Type#>'})
+            modelStr += '    var ' + strKey + ': <#Type#>\n'
+            keyTypes.append({strKey: '<#Type#>'})
 
 
     if caseLock:
@@ -69,18 +75,19 @@ def encodeDict(dic,dicKey):
         modelStr += '        let container = try decoder.container(keyedBy: CodingKeys.self)\n'
         for item in keyTypes:
             for itemKey in item.keys():
-                modelStr += '        if let value = try container.decodeIfPresent(' + item[
-                    itemKey] + '.self, forKey: .' + itemKey + '){\n'
-                modelStr += '            ' + itemKey + ' = value\n'
-                modelStr += '            }\n'
+                if keyIfIndexDic[itemKey] == '0':
+                    modelStr += '        if let value = try container.decodeIfPresent(' + item[itemKey] + '.self, forKey: .' + itemKey + '){\n'
+                    modelStr += '            ' + itemKey + ' = value\n'
+                    modelStr += '            }\n'
+                else:
+                    modelStr += '        ' + itemKey + ' = try container.decodeIfPresent(' + item[itemKey] + '.self, forKey: .' + itemKey + ')\n'
                 break
         modelStr += '    }\n'
-    modelStr += '\n\n\n'
 
 
 def saveModelStr():
     print(modelStr)
-    f = open('/Users/user/Desktop/Python Tool/NGSwiftJsonModel','w')
+    f = open('/Users/user/Desktop/PythonDemo/CreateSwiftClass/NGSwiftJsonModel','w')
     f.write(modelStr)
     f.close()
 
